@@ -8,6 +8,7 @@ import zipfile
 
 from .artifacts import verify_artifacts
 from .core import ReviewRequired, execution_lock
+from .guide import render as render_guide
 from .runner import Runner, create_run, status, tools_info
 
 
@@ -19,8 +20,11 @@ def parser():
         prepare.add_argument("--" + name, required=True)
     doctor = sub.add_parser("doctor", help="Check host Platform Tools only; no phone commands")
     doctor.add_argument("--platform-tools", required=True)
-    view = sub.add_parser("status")
+    view = sub.add_parser("status", help="Read the local journal as JSON; no phone access")
     view.add_argument("run_dir")
+    guide = sub.add_parser("guide", help="Read local next-step guidance in English or Chinese; no phone access")
+    guide.add_argument("run_dir")
+    guide.add_argument("--language", choices=("en", "zh-CN"), default="en")
     for name in ("run", "resume"):
         command = sub.add_parser(name, help="Preview by default; --execute performs the current stage")
         command.add_argument("run_dir")
@@ -34,6 +38,9 @@ def parser():
 def main(argv=None):
     args = parser().parse_args(argv)
     try:
+        if args.command == "guide":
+            print(render_guide(args.run_dir, args.language))
+            return 0
         if args.command == "prepare":
             print("Verifying pinned files and streaming sparse super; this can take several minutes.", file=sys.stderr)
             manifest = verify_artifacts(args.rom, args.gbl_apk, args.recovery_img, args.recovery_zip)

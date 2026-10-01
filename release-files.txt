@@ -39,3 +39,7 @@ tests/test_policy.py
 tests/test_release.py
 tests/test_runner.py
 tests/__init__.py
+changer/guide.py
+tests/test_guide.py
+docs/COMPATIBILITY.md
+docs/COMPATIBILITY.zh-CN.md
