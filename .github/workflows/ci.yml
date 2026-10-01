@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile Python source
+        run: python -m compileall -q change.py changer tests scripts
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Run unit tests with optimizations
+        run: python -O -m unittest discover -s tests -v
+      - name: Verify strict source export
+        run: python scripts/export_source.py --out "$RUNNER_TEMP/oppo-china-to-eu-changer"
