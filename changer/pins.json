@@ -1,0 +1,92 @@
+{
+  "rom": {
+    "filename": "Recovery Flasher F9U CN2EU 16.0.9.403.zip",
+    "size": 13346334129,
+    "sha256": "74c9754740c2587b20cd1b59a665436a62887ff078f6d7b4e79feb07973bf626"
+  },
+  "gbl_apk": {
+    "filename": "x9u-root-flasher-v0.2.1.apk",
+    "size": 838528,
+    "sha256": "3d9c6e74cb63c5472e377690d76ae2a960b009d0cc7ed2ccb9d909edf01da46d"
+  },
+  "recovery_img": {
+    "filename": "OrangeFox-R12.0-Unofficial-lighthouse.img",
+    "size": 104857600,
+    "sha256": "369fb7ef9ec2e69dd884409f3eec5349ceba8dd98e6e460f5d6871cf7246eaa4"
+  },
+  "recovery_zip": {
+    "filename": "OrangeFox-R12.0-Unofficial-lighthouse.zip",
+    "size": 59925692,
+    "sha256": "21f1abaf07492bcd3a8d962de10e24899fc6db3e3c146cdfbeb38231298c792d"
+  },
+  "firmware_image_sizes": {
+    "OTA_FILES_HERE/abl.img": 278528,
+    "OTA_FILES_HERE/aop.img": 393216,
+    "OTA_FILES_HERE/aop_config.img": 28672,
+    "OTA_FILES_HERE/bluetooth.img": 8388608,
+    "OTA_FILES_HERE/boot.img": 100663296,
+    "OTA_FILES_HERE/cpucp.img": 446464,
+    "OTA_FILES_HERE/cpucp_dtb.img": 16384,
+    "OTA_FILES_HERE/dcp.img": 8388608,
+    "OTA_FILES_HERE/devcfg.img": 61440,
+    "OTA_FILES_HERE/dsp.img": 77594624,
+    "OTA_FILES_HERE/dtbo.img": 25165824,
+    "OTA_FILES_HERE/engineering_cdt.img": 1048576,
+    "OTA_FILES_HERE/featenabler.img": 106496,
+    "OTA_FILES_HERE/hyp.img": 1658880,
+    "OTA_FILES_HERE/hyp_ac_config.img": 77824,
+    "OTA_FILES_HERE/imagefv.img": 114688,
+    "OTA_FILES_HERE/init_boot.img": 8388608,
+    "OTA_FILES_HERE/keymaster.img": 3354624,
+    "OTA_FILES_HERE/modem.img": 367001600,
+    "OTA_FILES_HERE/multiimgoem.img": 12288,
+    "OTA_FILES_HERE/multiimgqti.img": 12288,
+    "OTA_FILES_HERE/oplus_sec.img": 1040384,
+    "OTA_FILES_HERE/pdp.img": 356352,
+    "OTA_FILES_HERE/pdp_cdb.img": 16384,
+    "OTA_FILES_HERE/pvmfw.img": 1011712,
+    "OTA_FILES_HERE/qtvm_dtbo.img": 5242880,
+    "OTA_FILES_HERE/qupfw.img": 69632,
+    "OTA_FILES_HERE/recovery.img": 104857600,
+    "OTA_FILES_HERE/secretkeeper.img": 1056768,
+    "OTA_FILES_HERE/shrm.img": 184320,
+    "OTA_FILES_HERE/soccp.img": 8388608,
+    "OTA_FILES_HERE/soccp_dcd.img": 16384,
+    "OTA_FILES_HERE/soccp_debug.img": 73728,
+    "OTA_FILES_HERE/splash.img": 15290368,
+    "OTA_FILES_HERE/spuservice.img": 94208,
+    "OTA_FILES_HERE/super.img": 12209336172,
+    "OTA_FILES_HERE/tme_config.img": 45056,
+    "OTA_FILES_HERE/tme_fw.img": 204800,
+    "OTA_FILES_HERE/tme_seq_patch.img": 8192,
+    "OTA_FILES_HERE/tz.img": 4227072,
+    "OTA_FILES_HERE/tz_ac_config.img": 65536,
+    "OTA_FILES_HERE/tz_qti_config.img": 139264,
+    "OTA_FILES_HERE/uefi.img": 2797568,
+    "OTA_FILES_HERE/uefisecapp.img": 208896,
+    "OTA_FILES_HERE/vbmeta.img": 8192,
+    "OTA_FILES_HERE/vbmeta_system.img": 4096,
+    "OTA_FILES_HERE/vbmeta_vendor.img": 4096,
+    "OTA_FILES_HERE/vendor_boot.img": 100663296,
+    "OTA_FILES_HERE/vm-bootsys.img": 284999680,
+    "OTA_FILES_HERE/xbl.img": 1183744,
+    "OTA_FILES_HERE/xbl_ac_config.img": 45056,
+    "OTA_FILES_HERE/xbl_config.img": 401408,
+    "OTA_FILES_HERE/xbl_ramdump.img": 1036288
+  },
+  "rom_directories": [
+    "META-INF/",
+    "META-INF/com/",
+    "META-INF/com/google/",
+    "META-INF/com/google/android/",
+    "OTA_FILES_HERE/",
+    "tools/",
+    "tools/arm64/"
+  ],
+  "rom_files": {
+    "META-INF/com/google/android/update-binary": 20405,
+    "META-INF/com/google/android/updater-script": 44,
+    "tools/arm64/sparse_stream_writer": 12808,
+    "tools/arm64/stored_zip_streamer": 9816
+  }
+}
