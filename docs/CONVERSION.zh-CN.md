@@ -2,6 +2,8 @@
 
 [English](CONVERSION.md) | 简体中文 | [项目主页](../README.zh-CN.md)
 
+配套阅读：[流程图与分区变化](FLOW.zh-CN.md) · [截图与画面对照](SCREENSHOTS.zh-CN.md) · [机主体验与限制](COMPATIBILITY.zh-CN.md)。本流程纯属技术探索，真实操作需要知识背景与 AI 辅助核查；详见[入门前提](START_HERE.zh-CN.md)。上游工具、转换脚本作者和文档引用均列于[来源与致谢](SOURCES.zh-CN.md)。
+
 本文记录一台 OPPO Find X9 Ultra 从 `PMA110_16.0.9.403(CN01)` 转为 `CPH2841_16.0.9.403(EX01)` 的历史案例。它是案例记录，不是通用教程，也不代表本项目认可所有转版操作。GBL、OrangeFox 和 CN2EU 包均由社区维护；操作前请核对其当前说明和兼容性。
 
 社区讨论见 [XDA PMA110/PMA120 国行转全球帖](https://xdaforums.com/t/rom-pma110-pma120-convert-cn-to-global.4799566/)。论坛内容可能变化，不能作为软件包校验和权威来源；链接溯源与访问限制见[来源与溯源](SOURCES.zh-CN.md)。
@@ -36,7 +38,7 @@ CLI 根据大小和 SHA-256 校验以下确切文件（大小单位为字节）�
 | `Recovery Flasher F9U CN2EU 16.0.9.403.zip` | 13,346,334,129 | `74c9754740c2587b20cd1b59a665436a62887ff078f6d7b4e79feb07973bf626` |
 | `x9u-root-flasher-v0.2.1.apk` | 838,528 | `3d9c6e74cb63c5472e377690d76ae2a960b009d0cc7ed2ccb9d909edf01da46d` |
 | `OrangeFox-R12.0-Unofficial-lighthouse.img` | 104,857,600 | `369fb7ef9ec2e69dd884409f3eec5349ceba8dd98e6e460f5d6871cf7246eaa4` |
-| `OrangeFox-R12.0-Unofficial-lighthouse.zip` | 59,925,692 | `21f1abaf07492bcd3a8d962de10e24899fc6db3e3c146cdfbeb38231298c792d2` |
+| `OrangeFox-R12.0-Unofficial-lighthouse.zip` | 59,925,692 | `21f1abaf07492bcd3a8d962de10e24899fc6db3e3c146cdfbeb38231298c792d` |
 
 选择 CN2EU 包，不要误选方向相反的 EU2CN 包。实机记录使用 `Recovery Flasher F9U CN2EU 16.0.9.403.zip`，发布者列出的 SHA256 为 `74c9754740c2587b20cd1b59a665436a62887ff078f6d7b4e79feb07973bf626`。该摘要只标识这个确切压缩包；操作前仍须检查发布者的最新清单和实际下载文件。
 

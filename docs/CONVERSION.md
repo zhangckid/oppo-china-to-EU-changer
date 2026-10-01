@@ -2,6 +2,8 @@
 
 English | [简体中文](CONVERSION.zh-CN.md) | [Project home](../README.md)
 
+Read alongside the [flowcharts and partition changes](FLOW.md), [visual checkpoints](SCREENSHOTS.md), and [owner observations and limits](COMPATIBILITY.md). This is technical exploration requiring a knowledgeable operator and AI-assisted review; see the [prerequisites](START_HERE.md). Upstream tools, installer authorship and referenced documents are credited in [Sources](SOURCES.md).
+
 This document describes one historical conversion of an OPPO Find X9 Ultra from `PMA110_16.0.9.403(CN01)` to `CPH2841_16.0.9.403(EX01)`. It is a record, not a universal guide or an endorsement of conversion. GBL, OrangeFox, and the CN2EU package are community-maintained. Check their current instructions and compatibility before doing anything to a device.
 
 For community discussion see the [XDA PMA110/PMA120 CN-to-global thread](https://xdaforums.com/t/rom-pma110-pma120-convert-cn-to-global.4799566/). Forum posts can change and are not package checksum authorities; provenance and link-access limits are documented in [Sources](SOURCES.md).
@@ -36,7 +38,7 @@ The CLI checks these exact artifacts by size and SHA-256 (size in bytes); the ba
 | `Recovery Flasher F9U CN2EU 16.0.9.403.zip` | 13,346,334,129 | `74c9754740c2587b20cd1b59a665436a62887ff078f6d7b4e79feb07973bf626` |
 | `x9u-root-flasher-v0.2.1.apk` | 838,528 | `3d9c6e74cb63c5472e377690d76ae2a960b009d0cc7ed2ccb9d909edf01da46d` |
 | `OrangeFox-R12.0-Unofficial-lighthouse.img` | 104,857,600 | `369fb7ef9ec2e69dd884409f3eec5349ceba8dd98e6e460f5d6871cf7246eaa4` |
-| `OrangeFox-R12.0-Unofficial-lighthouse.zip` | 59,925,692 | `21f1abaf07492bcd3a8d962de10e24899fc6db3e3c146cdfbeb38231298c792d2` |
+| `OrangeFox-R12.0-Unofficial-lighthouse.zip` | 59,925,692 | `21f1abaf07492bcd3a8d962de10e24899fc6db3e3c146cdfbeb38231298c792d` |
 
 Select the CN2EU package, not the reverse EU2CN package. The recorded ZIP was `Recovery Flasher F9U CN2EU 16.0.9.403.zip`; its publisher-listed SHA256 is `74c9754740c2587b20cd1b59a665436a62887ff078f6d7b4e79feb07973bf626`. This digest identifies only that exact archive. Recheck the current publisher list and the actual downloaded file.
 

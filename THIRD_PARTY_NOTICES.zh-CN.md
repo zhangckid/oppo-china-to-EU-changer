@@ -24,3 +24,9 @@
 以上外部项目独立维护，相关软件和二进制文件仍受各自条款约束。本仓库未复制固件、APK、Recovery 包或 Platform Tools 二进制。
 
 OPPO、Find X9 Ultra、Android、Google、GBL 和 OrangeFox 名称及标识归各自所有者所有。本独立项目未获其认可或背书。
+
+## 截图与作者归属
+
+`docs/images/ota-download-failed.png` 由 Zhang Chen 在参考设备上采集，原样收录；其中的 OPPO/ColorOS/Android 界面及标识仍归原权利人，本项目 MIT 许可不重新授权这些第三方视觉元素。`guide-en` 与 `guide-zh-CN` 的 HTML/PNG 为本项目真实 CLI 输出的排版展示，不是手机刷写画面。
+
+固定 CN2EU 包内的 `META-INF/com/google/android/update-binary` 署名 `by koaaN`；Daniel Springer ROM Archive 提供分发与校验和。两者的角色分别记录，未将上游安装器称为本项目原创。项目作者为 Zhang Chen，Codex 提供 AI 协助。完整引用与贡献表见[来源、前人贡献与致谢](docs/SOURCES.zh-CN.md)。

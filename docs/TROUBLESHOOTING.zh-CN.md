@@ -56,3 +56,11 @@
 寻求帮助时，请给出确切机型/容量、源版本、项目号/内核、文件名及摘要、手机当前画面/模式、最后成功阶段、完整报错文本，以及写入是否可能已开始。不要公开序列号、账户令牌、个人备份或未脱敏日志。如果运行状态为 `review_required`，工具刻意没有“强行继续”命令。
 
 XDA 和维护者链接见[来源与溯源](SOURCES.zh-CN.md)。社区讨论可用于寻找熟悉该设备的人员，但不要复制其他机型或版本的流程。
+
+## 开机后的 OTA 与 NFC
+
+在参考 X9U 上，机主反馈日常使用正常，但系统 OTA 能收到推送却无法完成升级；NFC 国内 App 正常运行，添加卡时被 OPPO 拒绝。这是同一台设备的使用反馈，不是所有型号或每项功能的完整测试。
+
+OTA 调查与后续升级见 [oppo china to EU OTA updater](https://github.com/zhangckid/oppo-china-to-EU-OTA-updater)；它有独立的当前基线与 profile 要求，刚转 EU403 不能据此直接运行其当前升级流程。不要为修 OTA 或 NFC 重跑首次转换或重新加锁。NFC 拒绝原因尚未确定，本项目不提供加卡修复。细节见[兼容性](COMPATIBILITY.zh-CN.md)；真实 OTA 通知截图见[画面对照](SCREENSHOTS.zh-CN.md)。
+
+日常查看阶段可用 `python3 change.py guide RUN_DIR --language zh-CN`。退出 0 只代表成功读取记录，不代表手机已完成或获准继续。

@@ -56,3 +56,11 @@ Use `python3 change.py status RUN_DIR` to read the journal. Keep the whole run d
 When requesting help, give the exact model/storage, source build, project/kernel, artifact filenames and hashes, current screen/mode, last successful stage, exact error text, and whether a write may have started. Never post a serial, account token, personal backup, or unredacted device logs. If the run is `review_required`, the tool intentionally has no “continue anyway” command.
 
 For XDA and maintainer links, see [Sources and provenance](SOURCES.md). Community discussion can help find a person familiar with the device, but do not copy a procedure for a different model or build.
+
+## OTA and NFC after Android boots
+
+On the reference X9U, the owner reports normal everyday use except built-in OTA upgrades and NFC card provisioning: update notifications arrive but upgrading fails; domestic NFC apps run normally, while OPPO rejects adding a card. This is one owner's observation, not exhaustive model/function testing.
+
+For the investigation and later upgrade workflow see [oppo china to EU OTA updater](https://github.com/zhangckid/oppo-china-to-EU-OTA-updater). Its separate current baseline and profile requirements mean a newly converted EU403 phone is not automatically ready to execute that workflow. Do not rerun initial conversion or relock to repair OTA/NFC. The NFC rejection cause is unresolved; this project has no provisioning fix. Read [Compatibility](COMPATIBILITY.md) and the [actual OTA notification capture](SCREENSHOTS.md).
+
+For everyday stage guidance use `python3 change.py guide RUN_DIR`. Exit 0 only means the record was read successfully, not that the phone is complete or cleared to continue.

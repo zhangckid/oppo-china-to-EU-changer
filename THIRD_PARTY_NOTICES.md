@@ -24,3 +24,9 @@ Android sparse-image structure is implemented for this tool; consult the [AOSP l
 The external projects listed above remain separately maintained. Their software and binary artifacts retain their respective terms. No firmware, APK, Recovery package, or Platform Tools binary is copied into this repository.
 
 OPPO, Find X9 Ultra, Android, Google, GBL, and OrangeFox names and marks belong to their respective owners. This independent project is not endorsed by them.
+
+## Images and authorship
+
+`docs/images/ota-download-failed.png` was captured by Zhang Chen on the reference device and is included unchanged. Depicted OPPO/ColorOS/Android UI and marks remain their owners' property; this project's MIT license does not relicense those third-party visual elements. The `guide-en` and `guide-zh-CN` HTML/PNG files are this project's typeset actual CLI output, not phone-flashing screenshots.
+
+The pinned CN2EU package's `META-INF/com/google/android/update-binary` credits `by koaaN`; Daniel Springer ROM Archive provides distribution and checksums. Those roles are recorded separately, and the upstream installer is not claimed as this project's original work. Zhang Chen is the project author, assisted by Codex. See [Sources, prior work and acknowledgments](docs/SOURCES.md) for the full contribution and reference table.

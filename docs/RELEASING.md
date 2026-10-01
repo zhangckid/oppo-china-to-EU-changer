@@ -15,3 +15,5 @@ Review both the exported directory and archive before attaching them to a releas
 The generated `SOURCE-MANIFEST.sha256` records the files copied from the allowlist. It does not authenticate the origin or safety of third-party device images.
 
 Before a release, run the checks in CI, review the validation record and supported-device statement, inspect the allowlist for newly added files, and verify the archive contains no unlisted files or private data. Release tags and uploads are separate maintainer actions.
+
+Documentation images must also be individually allowlisted. Review real-device captures for privacy, provenance and third-party marks; do not add a private photo or log directory wholesale. `docs/images/guide-*.html` are the source for typeset offline terminal output, and their PNGs must not be described as hardware-flash validation. New documents should have English and Chinese counterparts with working language links.

@@ -2,6 +2,8 @@
 
 [English](CLI.md) | 简体中文 | [项目主页](../README.zh-CN.md)
 
+第一次使用请先读[入门页](START_HERE.zh-CN.md)。操作时对照[流程图](FLOW.zh-CN.md)与[画面说明](SCREENSHOTS.zh-CN.md)。完成离线准备后，用 `python3 change.py guide "$RUN_DIR" --language zh-CN` 读取中文阶段指引；默认语言为英文。它只读取日志，不替代设备核验，也不确认执行。
+
 以下是唯一经过审查案例的完整命令流程。起点必须是全新原厂 CN403 `PMA110`（512 GB、项目号 `25021`、固定内核），不能是已经转欧的手机。程序可以向真实设备发送命令；完整流程尚未在实机运行，实机支持仍未验证。
 
 CLI 需要 Linux 和 Python 3.11 或更新版本，仅使用 Python 标准库。Windows 与 macOS 主机不受支持，因为执行器使用 Linux 文件锁和 `/proc` 机制。设备操作需要 Google Platform Tools **37.0.1**。ROM、GBL APK、OrangeFox IMG 和 OrangeFox ZIP 不应放入公开源码树。CLI 根据固定大小和 SHA-256 识别输入，不检查本地文件名；建议保留发布者文件名，并从发布者/维护者来源核验下载文件。

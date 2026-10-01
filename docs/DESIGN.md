@@ -2,6 +2,8 @@
 
 English | [简体中文](DESIGN.zh-CN.md) | [Project home](../README.md)
 
+See [Flowcharts](FLOW.md) for the operation sequence, partition boundaries and interruption handling, and [Sources](SOURCES.md) for upstream code/document attribution. Codex assisted implementation and documentation; Zhang Chen maintains the project and makes operational decisions.
+
 The conversion combines downloaded artifacts, a host computer, bootloader/Recovery operations, and actions that must be confirmed on the phone. The CLI organizes that work as a checked sequence with pauses for a person. It does not make the community conversion package or firmware intrinsically safe.
 
 ## Workflow stages
@@ -19,11 +21,12 @@ The stage names describe required checkpoints, not a promise that the new tool h
 | Module | Responsibility and checks |
 | --- | --- |
 | `changer/core.py` | Canonical JSON state, atomic replacement with file/directory sync, process locking, and streaming hashes. The journal checksum detects accidental corruption or edits; it is not authentication and cannot prove that a local operator or malware did not alter both state and checksum. |
-| `changer/artifacts.py` | Verifies pinned artifact sizes and SHA-256 values, inspects ROM members and sparse-image structure, and holds verified file descriptors for transfers so replacing a pathname does not silently switch the opened input. |
+| `changer/artifacts.py` | Verifies pinned artifact sizes and SHA-256 values and inspects ROM members and sparse-image structure. |
 | `changer/device.py` | Runs bounded ADB/fastboot subprocesses with explicit serial selection, captures limited output, and treats timeouts, disconnects, and non-zero results as errors. |
 | `changer/policy.py` | Applies the exact PMA110 profile: model/build and lock checks, GPT and partition identity/capacity checks, protected boot-chain and firmware metadata checks, and fresh Recovery/format-log checks. |
-| `changer/runner.py` | Orchestrates the journaled stage sequence, backup/readback checks, explicit human handoffs, and interruption-to-`review_required` handling. It does not force, reset, retry uncertain writes, or roll back. |
-| `changer/cli.py` | Exposes `prepare`, `status`, `run`, `resume`, and `doctor`; defaults to preview, requires explicit execution/serial/erase acknowledgments for device operations, and uses exit codes for waits and stops. |
+| `changer/runner.py` | Holds verified file descriptors throughout transfers so pathname replacement cannot redirect the opened input. Orchestrates the journaled stage sequence, backup/readback checks, explicit human handoffs, and interruption-to-`review_required` handling. It does not force, reset, retry uncertain writes, or roll back. |
+| `changer/guide.py` | Read-only English/Chinese stage guidance; no device access or journal mutation, and no normal next-step instructions for unfinished or review states. |
+| `changer/cli.py` | Exposes `prepare`, `status`, `guide`, `run`, `resume`, and `doctor`; defaults to preview, requires explicit execution/serial/erase acknowledgments for device operations, and uses exit codes for waits and stops. |
 | `scripts/export_source.py` | Builds a share-safe source bundle from the strict, repository-relative `release-files.txt` allowlist; it does not gather run data or firmware artifacts. |
 
 This module map describes code paths, not evidence of successful operation on hardware. The checks reduce known mistakes but do not authenticate the host, binaries, connected device, or community firmware.
@@ -32,7 +35,7 @@ This module map describes code paths, not evidence of successful operation on ha
 | --- | --- | --- |
 | `prepared` | Start from the fresh, locked CN403 Android install; acknowledge data erase. | Android model/build/project/kernel/lock state and disk geometry; then install the pinned GBL APK. |
 | `waiting_gbl` | In the GBL app obtain temporary root, enter `FLASH`, require its verification success, format data in stock Recovery, reboot, then hold Volume Up after vibration to enter GBL. | GBL bootloader fastboot (not fastbootd), locked state; then request OEM unlock and bootloader unlock. The phone screen still needs human confirmation. |
-| `waiting_unlock` | Confirm the unlock on the phone and remain in GBL. | GBL unlocked state; then write the pinned OrangeFox IMG to `recovery_a` and reboot to Recovery. |
+| `waiting_unlock` | Confirm the unlock on the phone and remain in GBL. | GBL unlocked state, active slot A and 104,857,600-byte `recovery_a` capacity; then write the pinned OrangeFox IMG to `recovery_a` and reboot to Recovery. |
 | `waiting_recovery` | Wait for OrangeFox ADB. | CN GPT/layout, expected slot and protected boot-chain hashes, Recovery identity and at least 50% battery; then back up the reviewed partitions and GPTs before further flashing. |
 | `waiting_ofox_sideload` | Enable OrangeFox ADB Sideload. | Sideload the pinned OrangeFox ZIP. |
 | `waiting_ofox_recovery` | Wait for Recovery to return. | Fresh Recovery boot ID, both OrangeFox slots and retained GBL checks, partition capacities, backup hashes, no stale queued script, automatic reboot disabled, and no blocked firmware filesystems mounted; then capture the pre-install Recovery log. |

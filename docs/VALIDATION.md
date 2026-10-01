@@ -16,7 +16,7 @@ The new tool has **not been used to flash a phone**. The exact pinned ROM, GBL A
 
 The CLI can issue real ADB/fastboot commands when `--execute` is supplied, but validation of device behavior so far is through mock-backed unit tests only. Tests exercise parsers, stage checks, fake transports, failures, interruption handling, and release export. They cannot prove that hardware responses, Recovery UI steps, or image writes behave as expected on a physical device. Treat any real-device use as experimental; a run can leave the phone in an uncertain state.
 
-No real phone serial, complete private flash logs, firmware images, backups, or user data are included in this repository. The source export allowlist should contain only source, public documentation, and synthetic fixtures.
+No real phone serial, complete private flash logs, firmware images, backups, or user data are included in this repository. The source export allowlist should contain only source, public documentation, synthetic fixtures, and the explicitly reviewed documentation images.
 
 ## Evidence required before changing this status
 
@@ -25,3 +25,9 @@ Before claiming real-device support, maintainers would need to review the final 
 ## Historical source material
 
 The private operator record is kept outside this source project. Public conversion package, GBL, and OrangeFox sources are linked in [CONVERSION.md](CONVERSION.md). The later EU500 OTA manual verification is separately documented by the [OTA updater project](https://github.com/zhangckid/oppo-china-to-EU-OTA-updater); it is not evidence that this converter's CLI works.
+
+## Owner observations and AI assistance
+
+Only one X9U has the historical manual conversion and later manual EU500 upgrade evidence. The owner reports normal everyday international-firmware use except built-in OTA and NFC card addition: domestic NFC apps run, but OPPO rejects adding a card. This is not a per-build or per-feature certification; see [Compatibility](COMPATIBILITY.md).
+
+Zhang Chen maintains the project, with Codex assistance in analysis, implementation, testing and documentation. Tests for the added `guide` verify journal-only operation without subprocess/device access or mutation, and withholding of normal next-step instructions in unfinished/review states. These remain host tests, not flash tests. The historical OTA notification capture and typeset actual CLI examples are attributed in [Screenshots](SCREENSHOTS.md).

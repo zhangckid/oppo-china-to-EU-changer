@@ -2,6 +2,8 @@
 
 English | [简体中文](CLI.zh-CN.md) | [Project home](../README.md)
 
+First-time readers should start with [Start here](START_HERE.md). Keep the [flowcharts](FLOW.md) and [visual checkpoints](SCREENSHOTS.md) alongside this walkthrough. After offline preparation, use `python3 change.py guide "$RUN_DIR"` for readable stage guidance, or add `--language zh-CN`. It reads the journal only; it does not verify the phone or acknowledge execution.
+
 This is the complete command sequence for the one reviewed case. It assumes a fresh, stock CN403 `PMA110` (512 GB, project `25021`, pinned kernel), not a phone already converted to EU. The program can issue real device commands. Its end-to-end workflow has not been used on a phone; the hardware support claim remains unvalidated.
 
 The CLI requires Linux and Python 3.11 or newer and uses only the Python standard library. Windows and macOS hosts are unsupported because the runner uses Linux locking and `/proc` facilities. Device execution requires Google Platform Tools **37.0.1**. Keep the ROM, GBL APK, OrangeFox IMG, and OrangeFox ZIP out of the public source tree. The CLI identifies inputs by pinned size and SHA-256, not by their local filename; use the published file names where possible and verify downloads at their publisher/maintainer source.

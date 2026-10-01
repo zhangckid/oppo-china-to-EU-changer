@@ -2,6 +2,8 @@
 
 [English](DESIGN.md) | 简体中文 | [项目主页](../README.zh-CN.md)
 
+操作流程、分区边界与中断处理的图示见[流程图](FLOW.zh-CN.md)；上游代码与文档归属见[来源与致谢](SOURCES.zh-CN.md)。本项目实现和文档由 Codex 协助，维护与现场判断由 Zhang Chen 负责。
+
 转版涉及下载文件、主机、Bootloader/Recovery 操作，以及必须在手机上确认的动作。CLI 将这些步骤组织为经过检查、并在人工作用处暂停的流程；它不会让社区转换包或固件本身变得安全。
 
 ## 工作阶段
@@ -19,11 +21,12 @@
 | 模块 | 职责与检查 |
 | --- | --- |
 | `changer/core.py` | 规范化 JSON 状态、原子替换并同步文件/目录、进程锁和流式摘要。运行记录摘要用于发现意外损坏或编辑；它不是身份认证，也不能证明本机操作者或恶意程序没有同时修改状态和摘要。 |
-| `changer/artifacts.py` | 核对固定文件大小和 SHA-256，检查 ROM 成员及 sparse 镜像结构，并在传输期间持有已核验文件描述符，避免路径替换悄悄切换打开的输入文件。 |
+| `changer/artifacts.py` | 校验固定文件大小与 SHA-256，审查 ROM 成员及 sparse 镜像结构。 |
 | `changer/device.py` | 使用明确序列号运行有时限的 ADB/fastboot 子进程，限制捕获输出，并将超时、断连和非零结果视为错误。 |
 | `changer/policy.py` | 应用精确的 PMA110 配置：机型/版本与锁状态检查、GPT 和分区身份/容量检查、引导链保护及固件元数据检查，以及全新 Recovery/格式化日志检查。 |
-| `changer/runner.py` | 编排带运行记录的阶段流程、备份/读回检查、明确人工交接，以及中断后转为 `review_required`。不会强制继续、重置、重试不确定的写入或回滚。 |
-| `changer/cli.py` | 提供 `prepare`、`status`、`run`、`resume` 和 `doctor`；默认预览，设备操作需要明确执行、序列号和清除数据确认，并用退出码表示等待或停止。 |
+| `changer/runner.py` | 持有校验后的文件描述符贯穿传输，避免路径替换重定向输入；编排带运行记录的阶段流程、备份/读回检查、明确人工交接，以及中断后转为 `review_required`。不会强制继续、重置、重试不确定的写入或回滚。 |
+| `changer/guide.py` | 只读中英文阶段指引；不连接设备、不修改日志，未完成或异常状态不提供普通下一步。 |
+| `changer/cli.py` | 提供 `prepare`、`status`、`guide`、`run`、`resume` 和 `doctor`；默认预览，设备操作需要明确执行、序列号和清除数据确认，并用退出码表示等待或停止。 |
 | `scripts/export_source.py` | 依据严格的仓库相对 `release-files.txt` 白名单生成可分享的源码包；不会收集运行数据或固件文件。 |
 
 此模块索引描述代码路径，不代表实机成功运行的证据。检查可减少已知错误，但不能认证主机、二进制文件、连接的设备或社区固件。
@@ -32,7 +35,7 @@
 | --- | --- | --- |
 | `prepared` | 从全新、已锁定的 CN403 Android 开始；确认清除数据。 | Android 机型/版本/项目号/内核/锁状态与磁盘几何；之后安装固定摘要的 GBL APK。 |
 | `waiting_gbl` | 在 GBL 应用中取得临时 Root，输入 `FLASH` 并确认验证成功，在原厂 Recovery 格式化数据，重启后于振动时按住音量上进入 GBL。 | 确认为 GBL Bootloader fastboot（不是 fastbootd）且仍锁定；之后请求 OEM 解锁与 Bootloader 解锁。屏幕确认仍由用户亲自完成。 |
-| `waiting_unlock` | 在手机屏幕确认解锁，并保持在 GBL。 | 核对 GBL 已解锁；然后将固定 OrangeFox IMG 写入 `recovery_a` 并重启 Recovery。 |
+| `waiting_unlock` | 在手机屏幕确认解锁，并保持在 GBL。 | 核对 GBL 已解锁、当前槽位为 A、`recovery_a` 容量为 104,857,600 字节；然后将固定 OrangeFox IMG 写入 `recovery_a` 并重启 Recovery。 |
 | `waiting_recovery` | 等待 OrangeFox ADB。 | 核对 CN GPT/布局、预期槽位、受保护引导链摘要、Recovery 身份和至少 50% 电量；再于后续刷写前备份指定分区和 GPT。 |
 | `waiting_ofox_sideload` | 在 OrangeFox 开启 ADB Sideload。 | Sideload 固定摘要的 OrangeFox ZIP。 |
 | `waiting_ofox_recovery` | 等待 Recovery 返回。 | 核对全新 Recovery 启动 ID、双槽 OrangeFox 和保留的 GBL、分区容量、备份摘要、无过期队列脚本、自动重启关闭、固件文件系统未挂载；然后保存安装前 Recovery 日志。 |
